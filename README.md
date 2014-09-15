@@ -7,7 +7,9 @@ These functions are designed to be as stand-alone as possible and complement Ang
 
 Installation
 ------------
-Install with bower.
+Install with bower:
+
+	bower install ng-xenophilous
 
 
 FAQ
