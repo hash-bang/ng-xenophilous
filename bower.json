@@ -1,0 +1,16 @@
+{
+  "name": "ngXenophilous",
+  "version": "0.1.0",
+  "homepage": "https://github.com/hash-bang/ngXenophilous",
+  "authors": [
+    "Matt Carter <m@ttcarter.com>"
+  ],
+  "description": "Collection of functions which make Angular a little less painful to work with externally",
+  "main": "ngXenophilous.js",
+  "keywords": [
+    "angular",
+    "external",
+    "hacks"
+  ],
+  "license": "MIT"
+}
