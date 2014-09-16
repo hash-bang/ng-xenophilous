@@ -5,7 +5,7 @@
 * @param function cb The function to execute
 */
 function ngApply(controller, cb) {
-	var scope = ngGetController(controller);
+	var scope = ngGetScope(controller);
 	if (!scope)
 		return;
 
@@ -22,7 +22,7 @@ function ngApply(controller, cb) {
 * @param string controller The name of the controller to find
 * @return object|null Either the angular scope object or null if nothing was found
 */
-function ngGetController(controller) {
+function ngGetScope(controller) {
 	var controllerObj = $("[ng-controller='" + controller + "']");
 	if (!controllerObj.length) {
 		console.error('Cannot find controller', controller);
