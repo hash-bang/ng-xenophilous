@@ -12,5 +12,8 @@
     "external",
     "hacks"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "jquery": ">1.5"
+  }
 }
