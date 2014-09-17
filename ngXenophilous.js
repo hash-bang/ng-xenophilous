@@ -26,7 +26,26 @@ function ngApply(controller, cb) {
 	});
 }
 
+/**
+* Broadcast an event into the $rootScope downwards though all controllers
+* This function is the equivelent of Angulars `$rootScope.$broadcast()`
+* @param string event The event name to broadcast
+* @param mixed parameters,... Optional parameters to include in the broadcast
+*/
+function ngBroadcast(eventName) {
+	var rootScope = ngGetRootScope();
+	if (!rootScope) {
+		console.error('Tried to broadcast', eventName, 'but the $rootScope cannot be found');
+		return;
+	}
 
+	var args = arguments;
+	rootScope.$apply(function() {
+		rootScope.$broadcast.apply(rootScope, args);
+	});
+}
+
+// Utility functions {{{
 /**
 * Return a Angular controller scope object by name
 * This function isn't really meant to be used alone, see ngApply() for a more useful function
@@ -97,22 +116,4 @@ function ngGetRootScope() {
 	ngRootScope = scope.$root;
 	return ngRootScope;
 }
-
-/**
-* Broadcast an event into the $rootScope downwards though all controllers
-* This function is the equivelent of Angulars `$rootScope.$broadcast()`
-* @param string event The event name to broadcast
-* @param mixed parameters,... Optional parameters to include in the broadcast
-*/
-function ngBroadcast(eventName) {
-	var rootScope = ngGetRootScope();
-	if (!rootScope) {
-		console.error('Tried to broadcast', eventName, 'but the $rootScope cannot be found');
-		return;
-	}
-
-	var args = arguments;
-	rootScope.$apply(function() {
-		rootScope.$broadcast.apply(rootScope, args);
-	});
-}
+// }}}
