@@ -65,10 +65,36 @@ This function will find the controller by its name and execute code within its l
 	});
 
 
+ngBroadcast(eventName, parameters...)
+-------------------------------------
+Broadcast an event downwards though all controllers.
+
+This is functionally identical to `$rootScope.$broadcast()` except that its called externally from Angular.
+
+**Example:**
+
+	ngBroadcast('myCustomEvent', 'foo', 'bar', 'baz');
+
+
+Utility functions
+-----------------
+The following functions are also provided but they arn't really intended to be called directly. They are provided here in case you ever really want access to Angular controllers and so on but its recommended you use the above wrapper functions when manipulating things.
+
+
 ngGetScope(controllerName)
 --------------------------
 Retrieve the scope of a named controller. This is really just a utility function which gets used by the other functions to properly look up the controller.
 Its not a good idea to use this directly as updates to the object wont be detected by Angular. See `ngApply()` for the recommended way to execute Angular scope-aware code.
 
 **Example:**
+
 	var widgetScope = ngGetScope('widgetController');
+
+
+ngGetRootScope()
+----------------
+Similar to `ngGetScope()` but this time returns the Angular `$rootScope` object.
+
+**Example:**
+	
+	var rootScope = ngGetRootScope();
