@@ -18,8 +18,10 @@ var ngControllers = {};
 */
 function ngApply(controller, cb) {
 	var scope = ngGetScope(controller);
-	if (!scope)
+	if (!scope) {
+		console.error('Cannot find controler', controller, 'when attempting to apply code');
 		return;
+	}
 
 	scope.$apply(function() {
 		cb(scope);
@@ -40,9 +42,17 @@ function ngBroadcast(eventName) {
 	}
 
 	var args = arguments;
-	rootScope.$apply(function() {
-		rootScope.$broadcast.apply(rootScope, args);
-	});
+	if (!rootScope.$$phase) {
+		rootScope.$apply(function() {
+			rootScope.$broadcast.apply(rootScope, args);
+		});
+	} else {
+		setTimeout(function() {
+			rootScope.$apply(function() {
+				rootScope.$broadcast.apply(rootScope, args);
+			});
+		}, 0);
+	}
 }
 
 // Utility functions {{{
