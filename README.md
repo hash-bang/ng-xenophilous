@@ -98,3 +98,15 @@ Similar to `ngGetScope()` but this time returns the Angular `$rootScope` object.
 **Example:**
 	
 	var rootScope = ngGetRootScope();
+
+
+ngRegister(controllerName, controllerObject)
+--------------------------------------------
+ngXenophilous generally does a reasonable job of finding the relevant Angular controller by their given names but if you are doing something strange you can force a controller to resolve to the correct object by registering it with `ngRegister(name, object)`
+
+**Example:**
+
+	app.controller('widgetController', function($scope) {
+		ngRegister('widgetController', this);
+		// ... Lots of code .. //
+	});

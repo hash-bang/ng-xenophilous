@@ -65,6 +65,16 @@ function ngBroadcast(eventName) {
 	}
 }
 
+/**
+* Register a controller so we can address it later
+* ngXenophilous generally does a reasonable job of locating Angular controllers but if you're doing something weird you can point at the controller by name here
+* @param string controllerName The reference name of the controller to use
+* @param object controllerObj The controller object to reference
+*/
+function ngRegister(controllerName, controllerObj) {
+	ngControllers[controllerName] = controllerObj;
+}
+
 // Utility functions {{{
 /**
 * Return a Angular controller scope object by name
