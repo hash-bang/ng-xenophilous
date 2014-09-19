@@ -41,11 +41,17 @@ And insert the script loader into your header file:
 	<script src="/bower_components/ng-xenophilous/ngXenophilous.js"></script>
 
 
+**NOTE**: Due to the complex nature of actually finding the Angular controllers this module has a dependency on jQuery.
+
+
 FAQ
 ---
 * *Why this module* - Because I was having problems getting Angular to work with jQuery or *any* other JavaScript library without a load of faff.
 * *Why the stupid name* - [The internet](https://answers.yahoo.com/question/index?qid=20080712230820AAAhkXC) informs me that Xenophilous is the opposite of Xenophobic (self contained). Which is certainly the attitude we are trying to foster here.
 * *How do you recommend using this module* - Really this is just an add-on to Angular which enables it to work a bit better with external libraries. Use Angular for the majority of your coding and the functions provided by ngXenophilous for small jobs. I would certainly not recommend writing anything more than single liners - move your complex stuff to an Angular controller.
+* *Arn't all of the methods outlined here bad practice* - Yes and no. Angular recommends dropping jQuery entirely in its documentation - while this is a nice idea in a perfect world a lot of us still have legacy applications or JavaScript components that are not directly Angular compatible. This module attempts to cater for these without breaking the Angular framework too badly.
+* *Can't I just use `angular.element($('#userCtrl')).scope()` to find the scope of an object* - Certainly! Unfortunately Angular has lots of weird behaviours such as ensuring your within an `$apply` container and checking we are not already in a `$digest` phase before we can even begin. This module works around all these difficulties and provides a clean a way as possible to address Angular without having to deal with these problems every time.
+* *I know of a better way of finding Angular controllers without using jQuery selectors* - Yey! Please contact the author so he can update this module.
 
 
 Features
@@ -78,7 +84,7 @@ This is functionally identical to `$rootScope.$broadcast()` except that its call
 
 Utility functions
 -----------------
-The following functions are also provided but they arn't really intended to be called directly. They are provided here in case you ever really want access to Angular controllers and so on but its recommended you use the above wrapper functions when manipulating things.
+The following functions are also provided but they are not really intended to be called directly. They are provided here in case you ever really want access to Angular controllers and so on but its recommended you use the above wrapper functions when manipulating things.
 
 
 ngGetScope(controllerName)
