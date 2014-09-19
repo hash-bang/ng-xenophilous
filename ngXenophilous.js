@@ -13,6 +13,7 @@ var ngControllers = {};
 /**
 * Run a given function within a controller scope
 * This has the effect that Angular is aware of variable changes within scope
+* NOTE: If Angular is already in the $digest phase it will queue the callback onto the next timeout rather than risk a clash
 * @param string controller The name of the controller to run the function within
 * @param function cb The function to execute
 */
@@ -23,14 +24,23 @@ function ngApply(controller, cb) {
 		return;
 	}
 
-	scope.$apply(function() {
-		cb(scope);
-	});
+	if (!scope.$$phase) {
+		scope.$apply(function() {
+			cb(scope);
+		});
+	} else {
+		setTimeout(function() {
+			scope.$apply(function() {
+				cb(scope);
+			});
+		}, 0);
+	}
 }
 
 /**
 * Broadcast an event into the $rootScope downwards though all controllers
 * This function is the equivelent of Angulars `$rootScope.$broadcast()`
+* NOTE: If Angular is already in the $digest phase it will queue the callback onto the next timeout rather than risk a clash
 * @param string event The event name to broadcast
 * @param mixed parameters,... Optional parameters to include in the broadcast
 */
@@ -126,4 +136,3 @@ function ngGetRootScope() {
 	ngRootScope = scope.$root;
 	return ngRootScope;
 }
-// }}}
