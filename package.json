@@ -14,6 +14,15 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "jquery": ">1.5"
+    "angular": "^1.5.3",
+    "jquery": "^2.2.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hash-bang/ng-xenophilous.git"
+  },
+  "author": "Matt Carter <m@ttcarter.com> (https://github.com/hash-bang)",
+  "bugs": {
+    "url": "https://github.com/hash-bang/ng-xenophilous/issues"
   }
 }
