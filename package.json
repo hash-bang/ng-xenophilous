@@ -1,12 +1,12 @@
 {
   "name": "angular-xenophilous",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "homepage": "https://github.com/hash-bang/ngXenophilous",
   "authors": [
     "Matt Carter <m@ttcarter.com>"
   ],
   "description": "Collection of functions which make Angular a little less painful to work with externally",
-  "main": "ngXenophilous.js",
+  "main": "xenophilous.js",
   "keywords": [
     "angular",
     "external",
